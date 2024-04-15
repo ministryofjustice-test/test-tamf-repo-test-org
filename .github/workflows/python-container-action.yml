@@ -18,4 +18,4 @@ jobs:
       #   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Check outputs
         run: |
-        echo "Outputs - ${{ steps.pythonAction.outputs.myOutput }}"
+        echo "Outputs - ${{ steps.pythonAction.outputs.* }}"
