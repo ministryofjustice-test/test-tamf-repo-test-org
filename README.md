@@ -62,3 +62,31 @@ To add an Outside Collaborator to the repository, follow the guidelines detailed
 Adapt the dependabot.yml file to match your project's [dependency manager](https://docs.github.com/en/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file#package-ecosystem) and to enable [automated pull requests for package updates](https://docs.github.com/en/code-security/supply-chain-security).
 
 If your repository is private with no GitHub Advanced Security license, remove the .github/workflows/dependency-review.yml file.
+
+## Pipenv
+
+### Basics
+
+```bash
+# Install pipenv via brew
+brew install pipenv
+# or via pip
+python3 -m pip install pipenv
+
+# Install all dependencies, including development dependencies
+pipenv install --dev
+
+# Run a script within the created virtual environment
+pipenv run tests
+# or as a command
+pipenv run coverage run python -m unittest
+
+# Get location of virtual environment (location may be needed to point your IDE to the right interpreter)
+pipenv --venv
+
+# Check for vulnerable packages
+pipenv check
+
+# Additional information on pipenv functionality
+pipenv --help
+```
