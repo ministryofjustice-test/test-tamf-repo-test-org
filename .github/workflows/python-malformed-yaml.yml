@@ -1,4 +1,4 @@
-name: Python Container Workflow
+name: Test Python Malformed YAML
 on:
   pull_request:
     types: [opened, edited, reopened, synchronize]
