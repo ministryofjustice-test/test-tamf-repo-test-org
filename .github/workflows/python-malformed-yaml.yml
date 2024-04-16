@@ -1,0 +1,13 @@
+name: Python Container Workflow
+on:
+  pull_request:
+    types: [opened, edited, reopened, synchronize]
+
+jobs:
+  test-python-malformed-yaml:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4.1.2
+      - name: Detect malformed yaml files
+        uses: ministryofjustice/github-actions/python-malformed-yaml@mal-yaml-to-python
