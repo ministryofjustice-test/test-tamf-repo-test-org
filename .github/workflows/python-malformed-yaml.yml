@@ -10,6 +10,6 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4.1.2
       - name: Detect malformed yaml files
-        uses: ministryofjustice/github-actions/python-malformed-yaml@mal-yaml-to-python
+        uses: ministryofjustice/github-actions/python_malformed_yaml@mal-yaml-to-python
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
