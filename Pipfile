@@ -18,7 +18,7 @@ pyaml-env = "==1.2.1"
 pygithub = "==2.1.1"
 pyjwt = "==2.8.0"
 python-dateutil = "==2.8.2"
-requests = "==2.31.0"
+requests = "==2.32.3"
 slack-sdk = "==3.27.1"
 toml = "==0.10.2"
 
