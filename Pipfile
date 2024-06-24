@@ -19,7 +19,7 @@ pygithub = "==2.1.1"
 pyjwt = "==2.8.0"
 python-dateutil = "==2.8.2"
 requests = "==2.31.0"
-slack-sdk = "==3.27.1"
+slack-sdk = "==3.30.0"
 toml = "==0.10.2"
 
 [dev-packages]
