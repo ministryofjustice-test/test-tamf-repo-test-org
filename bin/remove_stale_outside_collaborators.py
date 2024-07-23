@@ -34,7 +34,8 @@ def main():
 
     for stale_outside_collaborator in stale_outside_collaborators:
         try:
-            github.remove_outside_collaborator_from_org(stale_outside_collaborator)
+            github.remove_outside_collaborator_from_org(
+                stale_outside_collaborator)
             logger.info(
                 "Removed Outside Collaborator %s from %s",
                 stale_outside_collaborator,

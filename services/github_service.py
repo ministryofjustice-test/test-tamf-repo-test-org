@@ -71,7 +71,8 @@ class GithubService:
                  enterprise_name: str = ENTERPRISE_NAME) -> None:
         self.organisation_name: str = organisation_name
         self.enterprise_name: str = enterprise_name
-        self.organisations_in_enterprise: list = ["ministryofjustice", "moj-analytical-services"]
+        self.organisations_in_enterprise: list = [
+            "ministryofjustice", "moj-analytical-services"]
 
         self.github_client_core_api: Github = Github(org_token)
         self.github_client_gql_api: Client = Client(transport=AIOHTTPTransport(
@@ -498,9 +499,11 @@ class GithubService:
         return repos_with_circleci_config
 
     def get_paginated_circleci_config_check(self, after_cursor: str | None, page_size: int) -> dict[str, Any]:
-        logging.info(f"Checking CircleCI config in repos. Page size {page_size}, after cursor {bool(after_cursor)}")
+        logging.info(
+            f"Checking CircleCI config in repos. Page size {page_size}, after cursor {bool(after_cursor)}")
         if page_size > self.GITHUB_GQL_MAX_PAGE_SIZE:
-            raise ValueError(f"Page size of {page_size} is too large. Max page size {self.GITHUB_GQL_MAX_PAGE_SIZE}")
+            raise ValueError(
+                f"Page size of {page_size} is too large. Max page size {self.GITHUB_GQL_MAX_PAGE_SIZE}")
 
         return self.github_client_gql_api.execute(gql("""
         query($organisation_name: String!, $page_size: Int!, $after_cursor: String) {
@@ -561,11 +564,13 @@ class GithubService:
                         )
                     for collaborators in repo["collaborators"]["edges"]:
                         if collaborators:
-                            active_outside_collaborators.append(collaborators["node"]["login"].lower())
+                            active_outside_collaborators.append(
+                                collaborators["node"]["login"].lower())
             repo_has_next_page = data["organization"]["repositories"]["pageInfo"]["hasNextPage"]
             after_cursor = data["organization"]["repositories"]["pageInfo"]["endCursor"]
 
-        stale_outside_collaborators = set(all_outside_collaborators) - set(active_outside_collaborators)
+        stale_outside_collaborators = set(
+            all_outside_collaborators) - set(active_outside_collaborators)
 
         return list(stale_outside_collaborators)
 
@@ -824,7 +829,8 @@ class GithubService:
 
     @retries_github_rate_limit_exception_at_next_reset_once
     def remove_outside_collaborator_from_org(self, outside_collaborator: str):
-        github_user = self.github_client_core_api.get_user(outside_collaborator)
+        github_user = self.github_client_core_api.get_user(
+            outside_collaborator)
         self.github_client_core_api.get_organization(
             self.organisation_name
         ).remove_outside_collaborator(
@@ -1239,6 +1245,7 @@ class GithubService:
         all_users = []
 
         for org in self.organisations_in_enterprise:
-            all_users = all_users + [user.login for user in self.github_client_core_api.get_organization(org).get_members() if user.login not in all_users]
+            all_users = all_users + [user.login for user in self.github_client_core_api.get_organization(
+                org).get_members() if user.login not in all_users]
 
         return all_users
